@@ -1,15 +1,14 @@
-const { Pool } = require("pg");
-require("dotenv").config();
+const { Pool } = require('pg');
+require('dotenv').config();
 
 const pool = new Pool({
   user: process.env.DB_USER,
   host: process.env.DB_HOST,
   database: process.env.DB_NAME,
   password: process.env.DB_PASSWORD,
-  port: process.env.DB_PORT,
+  port: process.env.DB_PORT
 });
 
-//holding our
 const createTableQuery = ` 
 CREATE TABLE IF NOT EXISTS bookinv (
   id SERIAL PRIMARY KEY,
@@ -23,7 +22,7 @@ CREATE TABLE IF NOT EXISTS bookinv (
 const createTable = async () => {
   try {
     await pool.query(createTableQuery);
-    console.log("Books created successfully...");
+    console.log("Table was created successfully...");
   } catch (err) {
     console.error("Error executing query...", err.stack);
   }
